@@ -1,0 +1,20 @@
+[?1034hrate reduction (forward): 0.803453248364	 (total): 0.955170832529
+rate of muon-matched triggers (forward): 0.989668443769 	 (total): 0.998394409398
+events with 1 or more triggers before optimisation: 132469.0
+events with 1 or more triggers after optimisation: 127001.0
+ratio after/before: 0.958722418075
+events with 1 or more muon-matched triggers before optimisation: 24693.0
+events with 1 or more muon-matched triggers after optimisation: 24661.0
+ratio after/before: 0.998704086178
+events with 2 or more triggers before optimisation: 5310.0
+events with 2 or more triggers after optimisation: 4990.0
+ratio after/before: 0.939736346516
+events with 2 or more muon-matched triggers before optimisation: 1087.0
+events with 2 or more muon-matched triggers after optimisation: 1078.0
+ratio after/before: 0.991720331187
+events with 3 or more triggers before optimisation: 268.0
+events with 3 or more triggers after optimisation: 246.0
+ratio after/before: 0.917910447761
+events with 3 or more muon-matched triggers before optimisation: 51.0
+events with 3 or more muon-matched triggers after optimisation: 51.0
+ratio after/before: 1.0

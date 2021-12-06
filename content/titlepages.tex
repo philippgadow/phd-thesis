@@ -1,0 +1,88 @@
+% !TEX root = ../my-thesis.tex
+%
+% ------------------------------------  --> cover title page
+\begin{titlepage}
+	\pdfbookmark[0]{Cover}{Cover}
+	\flushright
+	\hfill
+	\vfill
+	{\LARGE\thesisTitle \par}
+	\rule[5pt]{\textwidth}{.4pt} \par
+	{\Large\thesisName}
+	\vfill
+	{\large Dissertation}
+\end{titlepage}
+
+
+% ------------------------------------  --> main title page
+\begin{titlepage}
+	\pdfbookmark[0]{Titlepage}{Titlepage}
+	\tgherosfont
+	\centering
+
+	{\Large \thesisUniversity} \\[2mm]
+	{\large \thesisUniversityFaculty}\\[4mm]
+	\includegraphics[width=3cm]{figures/design/TUM_Logo_blau_cmyk_pdf.pdf} \\[4mm]
+	{\large \thesisInstitute}\\[2mm]
+	{\large \thesisInstituteSubtitle}\\[4mm]
+
+	\vfill
+	{\LARGE \color{ctcolortitle}\textbf{\thesisTitle} \\[10mm]}
+	{\Large \thesisName} \\
+
+
+	\vfill
+
+	{\large Vollständiger Abdruck der von der Fakultät für Physik der Technischen Universität München zur Erlangung des akademischen Grades eines \\[4mm]}
+
+	{\Large Doktors der Naturwissenschaften (Dr. rer. nat.) \\[4mm]}
+
+	{\large genehmigten Dissertation.}
+
+	\vfill
+	\begin{minipage}[t]{.27\textwidth}
+		\raggedleft
+		\textit{Vorsitzender:}
+	\end{minipage}
+	\hspace*{15pt}
+	\begin{minipage}[t]{.65\textwidth}
+		{\Large \thesisCommitteeChair}
+	\end{minipage} \\[10mm]
+	\begin{minipage}[t]{.27\textwidth}
+		\raggedleft
+		\textit{Prüfer der Dissertation:}
+	\end{minipage}
+	\hspace*{15pt}
+	\begin{minipage}[t]{.65\textwidth}
+		{\Large 1. \thesisFirstReviewer}
+	\end{minipage} \\[5mm]
+	\begin{minipage}[t]{.27\textwidth}
+		\raggedleft
+		\hfill
+	\end{minipage}
+	\hspace*{15pt}
+	\begin{minipage}[t]{.65\textwidth}
+		{\Large 2. \thesisSecondReviewer}
+	\end{minipage} \\[10mm]
+	\vfill
+
+	{Die Dissertation wurde am 12.10.2020 bei der Technischen Universität München eingereicht und durch die Fakultät für Physik am 26.10.2020 angenommen.} \\
+
+\end{titlepage}
+
+
+% ------------------------------------  --> lower title back for single page layout
+\hfill
+\vfill
+{
+	\small
+	\textbf{\thesisName} \\
+	\textit{\thesisTitle} \\
+	Head of the thesis committee: \thesisCommitteeChair \\
+	Reviewers: \thesisFirstReviewer\ and \thesisSecondReviewer \\
+	Supervisors: \thesisFirstSupervisor\ and \thesisSecondSupervisor \\[1.5em]
+	\textbf{\thesisUniversity}                         \hfill \textbf{\thesisInstitute}     \\
+	\thesisUniversityDepartment                        \hfill \thesisInstituteSubtitle      \\
+	\thesisUniversityStreetAddress                     \hfill \thesisInstituteStreetAddress \\
+	\thesisUniversityPostalCode\ \thesisUniversityCity \hfill \thesisInstitutePostalCode\ \thesisInstituteCity \\
+}

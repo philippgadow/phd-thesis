@@ -1,0 +1,466 @@
+% !TEX root = my-thesis.tex
+
+
+% **************************************************
+% Files' Character Encoding
+% **************************************************
+\PassOptionsToPackage{utf8}{inputenc}
+\usepackage{inputenc}
+
+
+% **************************************************
+% Information and Commands for Reuse
+% **************************************************
+\newcommand{\thesisTitle}{Search for Dark Matter Produced in Association with Hadronically Decaying Bosons at \(\sqrt{s}\)~=~13\,TeV with the ATLAS Detector at the LHC}
+\newcommand{\thesisName}{Paul Philipp Gadow}
+\newcommand{\thesisSubject}{Elementary Particle Physics}
+\newcommand{\thesisDate}{October 09, 2020}
+\newcommand{\thesisVersion}{1.0}
+
+\newcommand{\thesisFirstReviewer}{Priv.-Doz. Dr. Oliver Kortner}
+
+\newcommand{\thesisSecondReviewer}{Prof. Dr. Peter Fierlinger}
+
+\newcommand{\thesisCommitteeChair}{apl. Prof. Dr. Norbert Kaiser}
+
+\newcommand{\thesisFirstSupervisor}{Dr. Sandra Kortner}
+\newcommand{\thesisSecondSupervisor}{Dr. Patrick Rieck}
+
+\newcommand{\thesisUniversity}{\protect{Technische Universität München}}
+\newcommand{\thesisUniversityDepartment}{Physik-Department}
+\newcommand{\thesisUniversityFaculty}{Fakultät für Physik}
+\newcommand{\thesisUniversityCity}{Garching bei München}
+\newcommand{\thesisUniversityStreetAddress}{James-Franck-Straße 1}
+\newcommand{\thesisUniversityPostalCode}{85748}
+
+\newcommand{\thesisInstitute}{\protect{Max-Planck-Institut für Physik}}
+\newcommand{\thesisInstituteSubtitle}{\protect{(Werner-Heisenberg-Institut)}}
+
+\newcommand{\thesisInstituteCity}{München}
+\newcommand{\thesisInstituteStreetAddress}{Föhringer Ring 6}
+\newcommand{\thesisInstitutePostalCode}{80805}
+
+% **************************************************
+% Debug LaTeX Information
+% **************************************************
+%\listfiles
+
+% **************************************************
+% Load and Configure Packages
+% **************************************************
+\usepackage[english]{babel} % babel system, adjust the language of the content
+\PassOptionsToPackage{% setup clean thesis style
+    figuresep=colon,%
+    hangfigurecaption=false,%
+    hangsection=true,%
+    hangsubsection=true,%
+    sansserif=false,%
+    configurelistings=true,%
+    colorize=full,%
+    colortheme=bluegrey,%
+    configurebiblatex=true,%
+    bibsys=biber,%
+    bibfile=bib-refs,%
+    bibstyle=numeric,% alternative: alphabetic
+    bibsorting=nty,%
+}{cleanthesis}
+\usepackage{cleanthesis}
+
+\hypersetup{% setup the hyperref-package options
+    pdftitle={\thesisTitle},    %   - title (PDF meta)
+    pdfsubject={\thesisSubject},%   - subject (PDF meta)
+    pdfauthor={\thesisName},    %   - author (PDF meta)
+    plainpages=false,           %   -
+    colorlinks=false,           %   - colorize links?
+    pdfborder={0 0 0},          %   -
+    breaklinks=true,            %   - allow line break inside links
+    bookmarksnumbered=true,     %
+    bookmarksopen=true          %
+}
+
+
+% math fonts (I think it uses mathpazo)
+\usepackage{amsmath,amssymb}%
+% allows for the creation of 2/3 with \nicefrac{2}{3}
+\usepackage{nicefrac}%
+% \usepackage[parse-numbers=false,multi-part-units=single,alsoload=hep]{siunitx}%
+\usepackage[separate-uncertainty=true,multi-part-units=single,alsoload=hep]{siunitx}%
+% % proper differentials and bra-kets
+\usepackage{physics}%
+% % particle names
+\usepackage{hepnames}
+% chemistry notation
+\usepackage{chemformula}
+% good-looking tables
+\usepackage{booktabs}%
+\usepackage{multirow}%
+% % smart references to Figures and Tables
+\usepackage{cleveref}%
+% subfigures
+\usepackage{subcaption}%
+\captionsetup{compatibility=false}%
+% accents
+\usepackage{accents}
+
+
+% **************************************************
+% Formatting
+% **************************************************
+% Line spacing
+\singlespacing
+
+
+% **************************************************
+% Custom commands
+% **************************************************
+% --- Shortcuts for common words------------------------------------------------
+
+\newcommand{\uline}[1]{\rule[0pt]{#1}{0.4pt}}
+\newcommand*{\mtar}{\ensuremath{m^\text{TAR}}\xspace}
+\newcommand*{\ms}{\ensuremath{m_s}\xspace}
+
+\newcommand*{\METnoMu}{\ensuremath{E_{\text{T}}^{\text{miss}, \text{no} \mu}}\xspace}
+\newcommand*{\METnomu}{\ensuremath{E_{\text{T}}^{\text{miss}, \text{no} \mu}}\xspace}
+\newcommand*{\metnomu}{\ensuremath{E_{\text{T}}^{\text{miss}, \text{no} \mu}}\xspace}
+\newcommand*{\mptnomu}{\ensuremath{E_{\text{T}}^{\text{miss, track, no} \mu}}\xspace}
+
+
+\newcommand*{\METnoLep}{\ensuremath{E_{\text{T}}^{\text{miss}, \text{no} \ell}}\xspace}
+\newcommand*{\METnolep}{\ensuremath{E_{\text{T}}^{\text{miss}, \text{no} \ell}}\xspace}
+\newcommand*{\metnolep}{\ensuremath{E_{\text{T}}^{\text{miss}, \text{no} \ell}}\xspace}
+
+\newcommand*{\MPTnoLep}{\ensuremath{E_{\text{T}}^{\text{miss, track, no} \ell}}\xspace}
+\newcommand*{\MPTnolep}{\ensuremath{E_{\text{T}}^{\text{miss, track, no} \ell}}\xspace}
+\newcommand*{\mptnolep}{\ensuremath{E_{\text{T}}^{\text{miss, track, no} \ell}}\xspace}
+
+\newcommand*{\ptll}{\ensuremath{p_{\text{T}}^{\ell \ell}}\xspace}
+
+\newcommand*{\ptv}{\ensuremath{p_{\text{T}}^{V}}\xspace}
+\newcommand*{\ptV}{\ensuremath{p_{\text{T}}^{V}}\xspace}
+
+
+% make vectors bold instead of using the arrow
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+
+\newlength{\dhatheight}
+\newcommand{\doublehat}[1]{%
+    \settoheight{\dhatheight}{\ensuremath{\hat{#1}}}%
+    \addtolength{\dhatheight}{-0.15ex}%
+    \hat{\vphantom{\rule{1pt}{\dhatheight}}%
+    \smash{\hat{#1}}}}
+
+\newcommand*{\dat}[1]{\num[round-mode=places,round-precision=0]{#1}}
+\newcommand*{\nrf}[2]{\num[round-mode=figures,round-precision=#2]{#1}}
+\newcommand*{\pho}{\phantom{0}}
+\newcommand*{\phoo}{\phantom{00}}
+\newcommand*{\phd}{\phantom{.}}
+\newcommand*{\phdo}{\phantom{.0}}
+\newcommand*{\phdoo}{\phantom{.00}}
+\newcommand*{\phdooo}{\phantom{.000}}
+\newcommand*{\phdoooo}{\phantom{.0000}}
+
+\newcommand*{\dtwo}{\ensuremath{D_{2}^{(\beta=1)}}\xspace}
+\newcommand*{\taufourtwo}{\ensuremath{\tau_{42}}\xspace}
+\newcommand*{\taufourthree}{\ensuremath{\tau_{43}}\xspace}
+
+\newcommand*{\mindphi}{\ensuremath{\Delta \phi_{\text{jets}_{1,2,3} \met}}\xspace}
+
+\newcommand*{\merged}{``merged''\xspace}
+\newcommand*{\intermediate}{``intermediate''\xspace}
+\newcommand*{\inter}{``intermediate''\xspace}
+\newcommand*{\resolved}{``resolved'\xspace'}
+
+\newcommand*{\truthmerged}{``truth merged''\xspace}
+\newcommand*{\truthintermediate}{``truth intermediate''\xspace}
+\newcommand*{\truthinter}{``truth intermediate''\xspace}
+\newcommand*{\truthresolved}{``truth resolved''\xspace}
+
+
+% +--------------------------------------------------------------------+
+% |  Physics processes                                                 |
+% +--------------------------------------------------------------------+
+\newcommand*{\ttbar}{\ensuremath{\HepProcess{\Ptop\APtop}}\xspace}
+\newcommand*{\bbbar}{\ensuremath{\HepProcess{\Pbottom\APbottom}}\xspace}
+\newcommand*{\WW}{\ensuremath{\PWplus\PWminus}\xspace}
+\newcommand*{\ZZ}{\ensuremath{\PZ\PZ}\xspace}
+\newcommand*{\gammagamma}{\ensuremath{\HepProcess{\Pgamma\Pgamma}}\xspace}
+\newcommand*{\epem}{\ensuremath{\HepProcess{\APe\Pe}}\xspace}
+\newcommand*{\mumu}{\ensuremath{\HepProcess{\APmuon\Pmuon}}\xspace}
+\newcommand*{\tautau}{\ensuremath{\HepProcess{\APtauon\Ptauon}}\xspace}
+\newcommand*{\ZZstar}{\ensuremath{\PZ\PZ^{*}}\xspace}
+
+
+\newcommand*{\Jee}{\ensuremath{\HepProcess{\Jpsi \to \epem}}\xspace}
+\newcommand*{\Jmm}{\ensuremath{\HepProcess{\Jpsi \to \mumu}}\xspace}
+\newcommand*{\Wln}{\ensuremath{\HepProcess{\PW \to \ell\nu}}\xspace}
+\newcommand*{\Wen}{\ensuremath{\HepProcess{\PW \to \Pe\nu}}\xspace}
+\newcommand*{\Wmn}{\ensuremath{\HepProcess{\PW \to \mu\nu}}\xspace}
+\newcommand*{\Wlnu}{\ensuremath{\HepProcess{\PW \to \lnu}}\xspace}
+\newcommand*{\Wenu}{\ensuremath{\HepProcess{\PW \to \enu}}\xspace}
+\newcommand*{\Wmunu}{\ensuremath{\HepProcess{\PW \to \munu}}\xspace}
+\newcommand*{\Wtaunu}{\ensuremath{\HepProcess{\PW \to \tau\nu}}\xspace}
+\newcommand*{\Zll}{\ensuremath{\HepProcess{\PZ \to \Pl\Pl}}\xspace}
+\newcommand*{\Zlplm}{\ensuremath{\HepProcess{\PZ \to \leplep}}\xspace}
+\newcommand*{\Zee}{\ensuremath{\HepProcess{\PZ \to \Pe\Pe}}\xspace}
+\newcommand*{\Zepem}{\ensuremath{\HepProcess{\PZ \to \epem}}\xspace}
+\newcommand*{\Zmm}{\ensuremath{\HepProcess{\PZ \to \Pgm\Pgm}}\xspace}
+\newcommand*{\Zmpmm}{\ensuremath{\HepProcess{\PZ \to \mumu}}\xspace}
+\newcommand*{\Ztt}{\ensuremath{\HepProcess{\PZ \to \tau\tau}}\xspace}
+\newcommand*{\Ztautau}{\ensuremath{\HepProcess{\PZ \rightarrow \tau\tau}}\xspace}
+\newcommand*{\Ztptm}{\ensuremath{\HepProcess{\PZ \to \tautau}}\xspace}
+
+
+\newcommand*{\Vqq}{\ensuremath{\HepProcess{V(\Pquark\APquark)}}\xspace}
+\newcommand*{\Hbb}{\ensuremath{\HepProcess{\PHiggslight(\Pqb \Paqb)}}\xspace}
+\newcommand*{\sbb}{\ensuremath{\HepProcess{s(\Pqb \Paqb)}}\xspace}
+\newcommand*{\sVV}{\ensuremath{\HepProcess{s(V V)}}\xspace}
+
+\newcommand*{\Wjj}{\ensuremath{\HepProcess{\PW \to jj}}\xspace}
+\newcommand*{\Zjj}{\ensuremath{\HepProcess{\PZ \to jj}}\xspace}
+\newcommand*{\Vtoqq}{\ensuremath{\HepProcess{\PW/\PZ\to \Pquark\APquark}}\xspace}
+\newcommand*{\Htobb}{\ensuremath{\HepProcess{\PHiggslight \to \Pqb \Paqb}}\xspace}
+\newcommand*{\stobb}{\ensuremath{\HepProcess{s \to \Pqb \Paqb}}\xspace}
+\newcommand*{\stoVV}{\ensuremath{\HepProcess{s \to V(\Pq\Pq) V(\Pq\Pq)}}\xspace}
+
+
+\newcommand*{\Zbb}{\ensuremath{\HepProcess{\PZ \to \bbbar}}\xspace}
+\newcommand*{\Wqqbar}{\ensuremath{\HepProcess{\PW \to \qqbar}}\xspace}
+
+\newcommand*{\tjjb}{\ensuremath{\HepProcess{\Pqt \to jj \Pqb}}\xspace}
+\newcommand*{\tWb}{\ensuremath{\HepProcess{\Pqt \to \PW\Pqb}}\xspace}
+
+\newcommand*{\Hgg}{\ensuremath{\HepProcess{\PHiggslight \rightarrow \gamma\gamma}}\xspace}
+\newcommand*{\Hllll}{\ensuremath{\HepProcess{\PHiggslight \rightarrow \ell\ell\ell\ell}}\xspace}
+\newcommand*{\Hmmmm}{\ensuremath{\HepProcess{\PHiggslight \rightarrow \mu\mu\mu\mu}}\xspace}
+\newcommand*{\Heeee}{\ensuremath{\HepProcess{\PHiggslight \rightarrow eeee}}\xspace}
+
+
+
+
+\newcommand*{\Amm}{\ensuremath{\PHiggsps \rightarrow \mu\mu}\xspace}
+
+
+\newcommand*{\Atautau}{\ensuremath{\PHiggsps \rightarrow \tau\tau}\xspace}
+\newcommand*{\Htautau}{\ensuremath{\PHiggslight \rightarrow \tau\tau}\xspace}
+
+\newcommand*{\Wjets}{\ensuremath{\PW\text{+\,jets}}\xspace}
+\newcommand*{\Zjets}{\ensuremath{\PZ\text{\,+\,jets}}\xspace}
+\newcommand*{\Zvvjets}{\ensuremath{\PZ(\nu\nu)\text{+jets}}\xspace}
+\newcommand*{\Vjets}{\ensuremath{V\text{\,+\,jets}}\xspace}
+\newcommand*{\wjets}{\ensuremath{\PW\text{+\,jets}}\xspace}
+\newcommand*{\zjets}{\ensuremath{\PZ\text{\,+\,jets}}\xspace}
+\newcommand*{\vjets}{\ensuremath{V\text{\,+\,jets}}\xspace}
+
+
+
+\newcommand*{\VHbb}{\HepProcess{V\PHiggslight, \PHiggslight \to \Pqb\Paqb}\xspace}
+
+
+
+
+\newcommand*{\mHiggs}{\ensuremath{m_{\PHiggslight}}\xspace}
+\newcommand*{\mHiggsHeavy}{\ensuremath{m_{\PHiggsheavy}}\xspace}
+\newcommand*{\mHiggsCharged}{\ensuremath{m_{\PHiggspm}}\xspace}
+\newcommand*{\mA}{\ensuremath{m_{\PHiggsps}}\xspace}
+\newcommand*{\ma}{\ensuremath{m_{a}}\xspace}
+\newcommand*{\mZp}{\ensuremath{m_{\PZprime}}\xspace}
+\newcommand*{\mchi}{\ensuremath{m_{\chi}}\xspace}
+\newcommand*{\gZp}{\ensuremath{g_{\PZprime}}\xspace}
+\newcommand*{\gSM}{\ensuremath{g_{\text{SM}}}\xspace}
+\newcommand*{\gDM}{\ensuremath{g_{\text{DM}}}\xspace}
+\newcommand*{\gq}{\ensuremath{g_{\Pq}}\xspace}
+\newcommand*{\gl}{\ensuremath{g_{\Pl}}\xspace}
+\newcommand*{\gchi}{\ensuremath{g_{\chi}}\xspace}
+\newcommand{\sighdm}{\sigma_{\PHiggslight+\mathrm{DM}}\xspace}
+\newcommand{\br}{\ensuremath{\mathcal B}\xspace}
+\newcommand{\zhdm}{\ensuremath{\PZprime}-2HDM\xspace}
+\newcommand{\ahdm}{\ensuremath{a}-2HDM\xspace}
+
+
+% +--------------------------------------------------------------------+
+% |  Useful things for proton-proton physics                           |
+% +--------------------------------------------------------------------+
+\newcommand*{\pT}{\ensuremath{p_{\text{T}}}\xspace}
+\newcommand*{\pt}{\ensuremath{p_{\text{T}}}\xspace}
+\newcommand*{\ET}{\ensuremath{E_{\text{T}}}\xspace}
+\newcommand*{\eT}{\ensuremath{E_{\text{T}}}\xspace}
+\newcommand*{\et}{\ensuremath{E_{\text{T}}}\xspace}
+\newcommand*{\HT}{\ensuremath{H_{\text{T}}}\xspace}
+\newcommand*{\pTsq}{\ensuremath{p_{\text{T}}^{2}}\xspace}
+%\newcommand*{\ptsq}{\ensuremath{p_{\text{T}}^{2}}\xspace}
+\newcommand*{\MET}{\ensuremath{E_{\text{T}}^{\text{miss}}}\xspace}
+\newcommand*{\met}{\ensuremath{E_{\text{T}}^{\text{miss}}}\xspace}
+\newcommand*{\MPT}{\ensuremath{E_{\text{T}}^{\text{miss, track}}}\xspace}
+\newcommand*{\mpt}{\ensuremath{E_{\text{T}}^{\text{miss, track}}}\xspace}
+\newcommand*{\sumET}{\ensuremath{\sum \ET}\xspace}
+\newcommand*{\EjetRec}{\ensuremath{E_{\text{rec}}}\xspace}
+\newcommand*{\PjetRec}{\ensuremath{p_{\text{rec}}}\xspace}
+\newcommand*{\EjetTru}{\ensuremath{E_{\text{true}}}\xspace}
+\newcommand*{\PjetTru}{\ensuremath{p_{\text{true}}}\xspace}
+\newcommand*{\EjetDM}{\ensuremath{E_{\text{DM}}}\xspace}
+\newcommand*{\Rcone}{\ensuremath{R_{\text{cone}}}\xspace}
+\newcommand*{\abseta}{\ensuremath{|\eta|}\xspace}
+\newcommand*{\Ecm}{\ensuremath{E_{\text{cm}}}\xspace}
+\newcommand*{\rts}{\ensuremath{\sqrt{s}}\xspace}
+\newcommand*{\sqs}{\ensuremath{\sqrt{s}}\xspace}
+\newcommand*{\Nevt}{\ensuremath{N_{\mathrm{evt}}}\xspace}
+\newcommand*{\zvtx}{\ensuremath{z_{\mathrm{vtx}}}\xspace}
+\newcommand*{\dzero}{\ensuremath{d_{0}}\xspace}
+\newcommand*{\zzsth}{\ensuremath{z_{0} \sin(\theta)}\xspace}
+
+% LHC standard terms
+\newcommand*{\RunOne}{Run~1\xspace}
+\newcommand*{\RunTwo}{Run~2\xspace}
+\newcommand*{\RunThr}{Run~3\xspace}
+
+% ATLAS jets standard terms
+\newcommand*{\kt}{\ensuremath{k_{t}}\xspace}
+\newcommand*{\antikt}{anti-\kt}
+\newcommand*{\Antikt}{Anti-\kt}
+% Different hyphenation for pile-up in UK and US English
+\iflanguage{USenglish}{%
+    \newcommand*{\pileup}{pileup\xspace}
+    \newcommand*{\Pileup}{Pileup\xspace}
+}{%
+    \newcommand*{\pileup}{pile-up\xspace}
+    \newcommand*{\Pileup}{Pile-up\xspace}
+}
+
+% b-tagging standard terms
+\newcommand*{\btag}{\ensuremath{b\text{-tagging}}\xspace}
+\newcommand*{\btagging}{\ensuremath{b\text{-tagging}}\xspace}
+\newcommand*{\btagged}{\ensuremath{b\text{-tagged}}\xspace}
+\newcommand*{\bquark}{\ensuremath{b\text{-quark}}\xspace}
+\newcommand*{\bquarks}{\ensuremath{b\text{-quarks}}\xspace}
+\newcommand*{\bjet}{\ensuremath{b\text{-jet}}\xspace}
+\newcommand*{\bjets}{\ensuremath{b\text{-jets}}\xspace}
+\newcommand*{\cjet}{\ensuremath{c\text{-jet}}\xspace}
+\newcommand*{\cjets}{\ensuremath{c\text{-jets}}\xspace}
+
+% +--------------------------------------------------------------------+
+% | Masses                                                             |
+% +--------------------------------------------------------------------+
+\newcommand*{\mh}{\ensuremath{m_{h}}\xspace}
+\newcommand*{\mW}{\ensuremath{m_{W}}\xspace}
+\newcommand*{\mZ}{\ensuremath{m_{Z}}\xspace}
+\newcommand*{\mH}{\ensuremath{m_{H}}\xspace}
+% \newcommand*{\mA}{\ensuremath{m_{A}}\xspace}
+
+%\def\mass#1{\ensuremath{m_{#1#1}}}%  "\mass{\mu}" produces "msub{mumu}".
+\newcommand{\twomass}[2]{\ensuremath{m_{#1#2}}\xspace}
+
+% +--------------------------------------------------------------------+
+% |  Monte Carlo generators                                            |
+% +--------------------------------------------------------------------+
+\newcommand*{\ACERMC}{\textsc{AcerMC}\xspace}
+\newcommand*{\ACERMCV}[1]{\textsc{AcerMC}~#1\xspace}
+\newcommand*{\ALPGEN}{\textsc{Alpgen}\xspace}
+\newcommand*{\ALPGENV}[1]{\textsc{Alpgen}~#1\xspace}
+\newcommand*{\EVTGEN}{\textsc{EvtGen}\xspace}
+\newcommand*{\EVTGENV}[1]{\textsc{EvtGen}~#1\xspace}
+\newcommand*{\GEANT}{\textsc{Geant}\xspace}
+\newcommand*{\GEANTV}[1]{\textsc{Geant}~#1\xspace}
+\newcommand*{\Herwigpp}{Herwig++\xspace}
+\newcommand*{\HERWIGpp}{Herwig++\xspace}
+\newcommand*{\Herwig}{Herwig\xspace}
+\newcommand*{\HerwigV}[1]{Herwig~#1\xspace}
+\newcommand*{\HERWIG}{\textsc{Herwig}\xspace}
+\newcommand*{\HERWIGV}[1]{\textsc{Herwig}~#1\xspace}
+\newcommand*{\JIMMY}{\textsc{Jimmy}\xspace}
+\newcommand*{\JIMMYV}[1]{\textsc{Jimmy}~#1\xspace}
+\newcommand*{\MADSPIN}{\textsc{MadSpin}\xspace}
+\newcommand*{\MADGRAPH}{\textsc{MadGraph}\xspace}
+\newcommand*{\MADGRAPHV}[1]{\textsc{MadGraph}~#1\xspace}
+\newcommand*{\MGMCatNLO}{\textsc{MadGraph5}\_aMC@NLO\xspace}
+\newcommand*{\MGMCatNLOV}[1]{\textsc{MadGraph5}\_aMC@NLO~#1\xspace}
+\newcommand*{\MCatNLO}{MC@NLO\xspace}
+\newcommand*{\MCatNLOV}[1]{MC@NLO~#1\xspace}
+\newcommand*{\AMCatNLO}{aMC@NLO\xspace}
+\newcommand*{\AMCatNLOV}[1]{aMC@NLO~#1\xspace}
+\newcommand*{\MCFM}{MCFM\xspace}
+\newcommand*{\MCFMV}[1]{MCFM~#1\xspace}
+\newcommand*{\METOP}{\textsc{MEtop}\xspace}
+\newcommand*{\METOPV}[1]{\textsc{MEtop}~#1\xspace}
+\newcommand*{\POWHEG}{\textsc{Powheg}\xspace}
+\newcommand*{\POWHEGV}[1]{\textsc{Powheg}~#1\xspace}
+\newcommand*{\POWHEGBOX}{\textsc{Powheg-Box}\xspace}
+\newcommand*{\POWHEGBOXV}[1]{\textsc{Powheg-Box}~#1\xspace}
+\newcommand*{\POWPYTHIA}{\POWHEG{}+\PYTHIA}
+\newcommand*{\PROTOS}{\textsc{Protos}\xspace}
+\newcommand*{\PYTHIA}{\textsc{Pythia}\xspace}
+\newcommand*{\PYTHIAV}[1]{\textsc{Pythia}~#1\xspace}
+\newcommand*{\SHERPA}{\textsc{Sherpa}\xspace}
+\newcommand*{\SHERPAV}[1]{\textsc{Sherpa}~#1\xspace}
+
+%%% Event generator extras
+\newcommand*{\AFourteen}{A14\xspace}
+\newcommand*{\AZNLO}{AZNLO\xspace}
+\newcommand*{\Comphep}{CompHEP\xspace}
+\newcommand*{\Perugia}{Perugia\xspace}
+\newcommand*{\Prospino}{Prospino\xspace}
+
+\newcommand*{\LO}{\ensuremath{\text{LO}}\xspace}
+\newcommand*{\NLO}{\ensuremath{\text{NLO}}\xspace}
+\newcommand*{\NLL}{\ensuremath{\text{NLL}}\xspace}
+\newcommand*{\NNLO}{\ensuremath{\text{N}}\NLO\xspace}
+\newcommand*{\muF}{\ensuremath{\mu_\textsc{f}}\xspace}
+\newcommand*{\muR}{\ensuremath{\mu_\textsc{r}}\xspace}
+
+% +--------------------------------------------------------------------+
+% |  Useful symbols for use in or out of math mode                     |
+% +--------------------------------------------------------------------+
+\newcommand*{\ra}{\ensuremath{\rightarrow}\xspace}
+\newcommand*{\la}{\ensuremath{\leftarrow}\xspace}
+\newcommand*{\rarrow}{\ensuremath{\rightarrow}\xspace}
+\newcommand*{\larrow}{\ensuremath{\leftarrow}\xspace}
+%\let\rarrow=\ra
+%\let\larrow=\la
+\newcommand*{\lapprox}{\ensuremath{\sim\kern-1em\raise 0.65ex\hbox{\(<\)}}\xspace}%  Or use \lsim
+\newcommand*{\rapprox}{\ensuremath{\sim\kern-1em\raise 0.65ex\hbox{\(>\)}}\xspace}%  and \rsim.
+\newcommand*{\gam}{\ensuremath{\gamma}\xspace}
+\newcommand*{\stat}{\mbox{\(\;\)(stat.)}\xspace}
+\newcommand*{\syst}{\mbox{\(\;\)(syst.)}\xspace}
+\newcommand*{\radlength}{\ensuremath{X_0}}
+\newcommand*{\StoB}{\ensuremath{S/B}\xspace}
+
+% Different differential symbols in American and British English
+\iflanguage{USenglish}{%
+  \providecommand*{\dif}{\ensuremath{d}}
+}{%
+  \providecommand*{\dif}{\ensuremath{\mathrm{d}}}
+}
+
+
+% +--------------------------------------------------------------------+
+% |  QCD                                                               |
+% +--------------------------------------------------------------------+
+\newcommand*{\alphas}{\ensuremath{\alpha_{\text{S}}}\xspace}
+\newcommand*{\NF}{\ensuremath{N_{\text{F}}}\xspace}
+\newcommand*{\NC}{\ensuremath{N_{\text{C}}}\xspace}
+\newcommand*{\CF}{\ensuremath{C_{\text{F}}}\xspace}
+\newcommand*{\CA}{\ensuremath{C_{\text{A}}}\xspace}
+\newcommand*{\TF}{\ensuremath{T_{\text{F}}}\xspace}
+\newcommand*{\Lms}{\ensuremath{\Lambda_{\overline{\text{MS}}}}\xspace}
+\newcommand*{\Lmsfive}{\ensuremath{\Lambda^{(5)}_{\overline{\text{MS}}}}\xspace}
+\newcommand*{\kperp}{\ensuremath{k_{\perp}}\xspace}
+
+% +--------------------------------------------------------------------+
+% |  CKM matrix                                                        |
+% +--------------------------------------------------------------------+
+\newcommand*{\Vcb}{\ensuremath{\vert V_{cb} \vert}\xspace}
+\newcommand*{\Vub}{\ensuremath{\vert V_{ub} \vert}\xspace}
+\newcommand*{\Vtd}{\ensuremath{\vert V_{td} \vert}\xspace}
+\newcommand*{\Vts}{\ensuremath{\vert V_{ts} \vert}\xspace}
+\newcommand*{\Vtb}{\ensuremath{\vert V_{tb} \vert}\xspace}
+\newcommand*{\Vcs}{\ensuremath{\vert V_{cs} \vert}\xspace}
+\newcommand*{\Vud}{\ensuremath{\vert V_{ud} \vert}\xspace}
+\newcommand*{\Vus}{\ensuremath{\vert V_{us} \vert}\xspace}
+\newcommand*{\Vcd}{\ensuremath{\vert V_{cd} \vert}\xspace}
+
+% +--------------------------------------------------------------------+
+% |  Figure width                                                      |
+% +--------------------------------------------------------------------+
+\newlength{\figwidth}
+\setlength{\figwidth}{\textwidth}
+\addtolength{\figwidth}{-2.0cm}

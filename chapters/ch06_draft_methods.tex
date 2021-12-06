@@ -1,0 +1,99 @@
+%ch01_introduction.tex
+% **************************************************
+% Document Class Definition
+% **************************************************
+\documentclass[%
+    paper=A4,               % paper size --> A4 is default in Germany
+    twoside=true,           % onesite or twoside printing
+    openright,              % doublepage cleaning ends up right side
+    parskip=half,           % spacing value / method for paragraphs
+    chapterprefix=true,     % prefix for chapter marks
+    11pt,                   % font size
+    headings=normal,        % size of headings
+    bibliography=totoc,     % include bib in toc
+    listof=totoc,           % include listof entries in toc
+    titlepage=on,           % own page for each title page
+    captions=tableabove,    % display table captions above the float env
+    chapterprefix=false,    % do not display a prefix for chapters
+    appendixprefix=false,    % but display a prefix for appendix chapter
+    draft=false,            % value for draft version
+]{scrreprt}%
+
+
+% **************************************************
+% Setup YOUR thesis document in this file !
+% **************************************************
+\input{my-thesis-setup}
+
+
+% **************************************************
+% Draft mode options
+% **************************************************
+% % increase space for corrections
+\setstretch{3.}
+% % add line numbers for corrections
+\usepackage{lineno}
+\linenumbers
+
+% **************************************************
+% Document CONTENT
+% **************************************************
+\begin{document}
+
+% uncomment the following command to fill up pages with
+% whitespace instead of aligning the first and last lines
+% of a page (see \raggedbottom vs. \flushbottom)
+%\raggedbottom
+
+% --------------------------
+% rename document parts
+% --------------------------
+\renewcaptionname{english}{\figurename}{Fig.}
+\renewcaptionname{english}{\tablename}{Tab.}
+
+% --------------------------
+% Body matter
+% --------------------------
+\pagenumbering{arabic}			% arabic page numbering
+\setcounter{page}{1}			% set page counter
+\pagestyle{scrheadings}			% header and footer style
+
+% \input{content/chapter-introduction}
+% \part{Foundations}
+% \input{content/chapter-standardmodel}
+% \input{content/chapter-darkmatter}
+% \input{content/chapter-protoncollisions}
+% \input{content/chapter-detector}
+\input{content/chapter-methods}
+
+% \part{Studies of the ATLAS muon trigger}
+% \input{content/chapter-trigger}
+
+% \part{Searches for dark matter}
+% \input{content/chapter-monoV}
+% \input{content/chapter-monoH}
+% \input{content/chapter-monoS}
+
+% \part{Outlook}
+% \input{content/chapter-outlook}
+% \input{content/chapter-conclusion}
+
+
+% --------------------------
+% Back matter
+% --------------------------
+%
+{%
+\setstretch{1.1}
+\renewcommand{\bibfont}{\normalfont\small}
+\setlength{\biblabelsep}{0pt}
+\setlength{\bibitemsep}{0.5\baselineskip plus 0.5\baselineskip}
+\printbibliography[nottype=online]
+\newrefcontext[labelprefix={@}]
+\printbibliography[heading=subbibliography,title={Webpages},type=online]
+}
+
+% **************************************************
+% End of Document CONTENT
+% **************************************************
+\end{document}

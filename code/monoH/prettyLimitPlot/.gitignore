@@ -1,0 +1,8 @@
+plots/*.eps
+plots/*.pdf
+plots/*.png
+
+plots_nlo/*.eps
+plots_nlo/*.png
+plots_nlo/*.pdf
+*.pyc

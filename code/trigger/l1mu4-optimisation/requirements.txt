@@ -1,0 +1,8 @@
+atlas-mpl-style==0.12.3
+awkward==0.12.21
+coffea==0.6.40
+matplotlib==3.2.1
+mplhep==0.1.22
+numpy==1.16.1
+uproot==3.11.7
+uproot-methods==0.7.4
